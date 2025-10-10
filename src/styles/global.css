@@ -1,0 +1,26 @@
+@import 'tailwindcss';
+
+@layer base {
+    html,
+    body {
+        @apply bg-zinc-950 text-white font-poppins;
+    }
+}
+
+@theme {
+    /* Font */
+    --font-poppins: 'Poppins', 'sans-serif';
+
+    /* Palette personalizzata */
+    --color-w-accent-1: #e39774;
+    --color-w-accent-2: #88d18a;
+    --color-w-accent-3: #72b89c;
+    --color-w-accent-4: #5c9ead;
+    --color-w-accent-5: #bbd5ed;
+    --color-w-accent-6: #a288e3;
+    --color-w-accent-7: #a93f55;
+    --color-w-accent-8: #a6649c;
+    --color-w-accent-9: #f9dc5c;
+    --color-w-accent-10: #b8ce80;
+    --color-w-accent-11: #77bfa3;
+}
