@@ -19,11 +19,11 @@
             <div class="h-3 w-16 bg-white/5 border border-white/10 animate-pulse rounded"></div>
         </div>
     </div>
-    <div class="grid grid-cols-2 gap-2 mt-4">
-        <div class="h-16 bg-white/5 border border-white/10 animate-pulse rounded-lg"></div>
-        <div class="h-16 bg-white/5 border border-white/10 animate-pulse rounded-lg"></div>
-        <div class="h-16 bg-white/5 border border-white/10 animate-pulse rounded-lg"></div>
-        <div class="h-16 bg-white/5 border border-white/10 animate-pulse rounded-lg"></div>
+    <div class="grid grid-cols-2 gap-2 sm:gap-3 mt-4">
+        <div class="h-14 sm:h-16 bg-white/5 border border-white/10 animate-pulse rounded-lg"></div>
+        <div class="h-14 sm:h-16 bg-white/5 border border-white/10 animate-pulse rounded-lg"></div>
+        <div class="h-14 sm:h-16 bg-white/5 border border-white/10 animate-pulse rounded-lg"></div>
+        <div class="h-14 sm:h-16 bg-white/5 border border-white/10 animate-pulse rounded-lg"></div>
     </div>
 {:else if !data}
     <div class="rounded-lg bg-white/5 border border-white/10 p-4 text-center">
@@ -44,7 +44,7 @@
         </div>
     </div>
 
-    <div class="grid grid-cols-2 gap-3">
+    <div class="grid grid-cols-2 gap-2 sm:gap-3">
         {#each [
             { label: 'Bullet', key: 'bullet', color: 'text-accent-cyan' },
             { label: 'Blitz', key: 'blitz', color: 'text-accent' },
@@ -52,18 +52,18 @@
             { label: 'Daily', key: 'daily', color: 'text-accent-orange' }
         ] as cat}
             {@const stat = data[cat.key as keyof ChessData] as import('../types').Stats | null}
-            <div class="rounded-lg bg-white/3 border border-white/10 px-4 py-3 hover:bg-white/6 hover:border-white/20 transition-all">
-                <div class="flex items-baseline justify-between gap-2">
-                    <span class="font-sans text-2xl font-bold tracking-tight {cat.color}">
+            <div class="rounded-lg bg-white/3 border border-white/10 px-3 sm:px-4 py-2.5 sm:py-3 hover:bg-white/6 hover:border-white/20 transition-all">
+                <div class="flex items-baseline justify-between gap-1.5 sm:gap-2">
+                    <span class="font-sans text-xl sm:text-2xl font-bold tracking-tight {cat.color}">
                         {stat?.rating ?? '--'}
                     </span>
-                    <span class="font-sans text-xs uppercase tracking-widest text-text-muted/50">{cat.label}</span>
+                    <span class="font-sans text-[10px] sm:text-xs uppercase tracking-widest text-text-muted/50">{cat.label}</span>
                 </div>
                 {#if stat?.record}
                     {@const total = stat.record.win + stat.record.loss + stat.record.draw}
-                    <div class="flex gap-3 mt-1">
-                        <span class="font-sans text-xs text-text-muted/50">{total} games</span>
-                        <span class="font-sans text-xs text-accent-lime/60">
+                    <div class="flex gap-2 sm:gap-3 mt-0.5 sm:mt-1">
+                        <span class="font-sans text-[10px] sm:text-xs text-text-muted/50">{total} games</span>
+                        <span class="font-sans text-[10px] sm:text-xs text-accent-lime/60">
                             {total > 0 ? Math.round((stat.record.win / total) * 100) : 0}%
                         </span>
                     </div>
