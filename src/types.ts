@@ -1,7 +1,6 @@
 export interface MusicData {
     recent: { image: string; name: string; url: string; artist: string; nowplaying: boolean }
     topArtists: { name: string; url: string; image: string; playcount: number }[]
-    topTracks: { name: string; url: string; artist: string; image: string; playcount: number }[]
     monthlyScrobbles: number
 }
 

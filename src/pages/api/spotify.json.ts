@@ -53,10 +53,9 @@ async function enrichWithSpotify<T extends { image: string }>(
 export const GET: APIRoute = async () => {
     const monthStart = Math.floor(new Date(new Date().getFullYear(), new Date().getMonth(), 1).getTime() / 1000)
 
-    const [recentRes, topArtistsRes, topTracksRes, monthRes] = await Promise.all([
+    const [recentRes, topArtistsRes, monthRes] = await Promise.all([
         lastfm<any>('?method=user.getrecenttracks&limit=1'),
         lastfm<any>('?method=user.gettopartists&period=1month&limit=8'),
-        lastfm<any>('?method=user.gettoptracks&period=7day&limit=5'),
         lastfm<any>(`?method=user.getrecenttracks&from=${monthStart}&limit=1`)
     ])
 
@@ -66,12 +65,8 @@ export const GET: APIRoute = async () => {
     let topArtists: MusicData['topArtists'] = (topArtistsRes?.topartists?.artist ?? []).map((a: any) => ({
         name: a.name, url: a.url, image: a.image?.[2]?.['#text'] ?? '', playcount: parseInt(a.playcount) || 0
     }))
-    let topTracks: MusicData['topTracks'] = (topTracksRes?.toptracks?.track ?? []).map((t: any) => ({
-        name: t.name, url: t.url, artist: t.artist?.name ?? '', image: t.image?.[2]?.['#text'] ?? '', playcount: parseInt(t.playcount) || 0
-    }))
 
     topArtists = await enrichWithSpotify(token, topArtists, 'artist', (a) => a.name)
-    topTracks = await enrichWithSpotify(token, topTracks, 'track', (t) => `${t.name} ${t.artist}`)
 
     let recentImage = track?.image[3]?.['#text'] ?? ''
     if (token && track?.name && track?.artist?.['#text']) {
@@ -88,7 +83,6 @@ export const GET: APIRoute = async () => {
             nowplaying: track?.['@attr']?.nowplaying ?? false
         },
         topArtists,
-        topTracks,
         monthlyScrobbles: parseInt(monthRes?.recenttracks?.['@attr']?.total) || 0
     }
 
