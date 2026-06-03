@@ -1,8 +1,17 @@
 ---
-import '@fontsource/poppins/400.css'
-import '@fontsource/poppins/500.css'
-import '@fontsource/poppins/700.css'
+import '@fontsource/archivo-black'
+import '@fontsource/public-sans/400.css'
+import '@fontsource/public-sans/500.css'
+import '@fontsource/public-sans/600.css'
+import '@fontsource/public-sans/700.css'
+import '@fontsource/playfair-display/400.css'
+import '@fontsource/playfair-display/600.css'
+import '@fontsource/playfair-display/700.css'
+import 'aos/dist/aos.css'
 import '../styles/global.css'
+import AOSInit from '@components/AOSInit.svelte'
+import SmoothScroll from '@components/SmoothScroll.svelte'
+
 const { title } = Astro.props
 ---
 
@@ -10,23 +19,22 @@ const { title } = Astro.props
 <html lang="en">
     <head>
         <meta charset="utf-8" />
-        <title>{title} | notgabry</title>
         <meta name="viewport" content="width=device-width, initial-scale=1.0" />
         <meta name="generator" content={Astro.generator} />
-        <meta name="description" content="Modern & Minimal ❤" />
+        <meta name="description" content="Gabry's corner" />
+        <title>{title} | notgabry</title>
 
         <meta property="og:title" content="notgabry" />
         <meta property="og:site_name" content="notgabry" />
-        <meta property="og:description" content="Modern & Minimal ❤" />
-        <meta property="theme-color" content="#A9A7F1" />
+        <meta property="og:description" content="Gabry's corner" />
+        <meta property="theme-color" content="#8B5CF6" />
 
         <link rel="icon" href="/gabry-icon.png" />
         <link rel="shortcut icon" href="/gabry-icon.png" />
-
-        <link rel="sitemap" href="/sitemap-index.xml" />
     </head>
-
-    <body class="mx-4">
+    <body class="bg-bg text-text font-sans antialiased">
         <slot />
+        <AOSInit client:load />
+        <SmoothScroll client:load />
     </body>
 </html>

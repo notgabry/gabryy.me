@@ -1,41 +1,20 @@
-export interface Lastfm {
-    recenttracks: {
-        track: {
-            artist: {
-                '#text': string
-            }
-            image: {
-                size: 'extralarge' | 'large' | 'medium' | 'small'
-                '#text': string
-            }[]
-            name: string
-            url: string
-            '@attr': {
-                nowplaying: boolean
-            }
-        }[]
-    }
+export interface MusicData {
+    recent: { image: string; name: string; url: string; artist: string; nowplaying: boolean }
+    topArtists: { name: string; url: string; image: string; playcount: number }[]
+    topTracks: { name: string; url: string; artist: string; image: string; playcount: number }[]
+    monthlyScrobbles: number
 }
 
-export interface RecentSong {
-    image: string
-    name: string
-    url: string
-    artist: string
-    nowplaying: boolean
+export interface ChessData {
+    profile: { avatar: string; username: string; status: string; joined: number } | null
+    bullet: Stats | null
+    blitz: Stats | null
+    rapid: Stats | null
+    daily: Stats | null
 }
 
-export interface Chesscom {
-    chess_rapid: {
-        last: {
-            rating: number
-            date: number
-        }
-    }
-    chess_blitz: {
-        last: {
-            rating: number
-            date: number
-        }
-    }
+export interface Stats {
+    rating: number
+    date: number
+    record?: { win: number; loss: number; draw: number }
 }

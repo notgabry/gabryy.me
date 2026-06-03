@@ -1,67 +1,42 @@
 ---
 import Layout from '@layouts/Layout.astro'
-import Spotify from '@components/Spotify.svelte'
-import Chess from '@components/Chess.svelte'
-import Links from '@components/Links.astro'
+import Hero from '@components/Hero.astro'
+import About from '@components/About.astro'
+import Work from '@components/Work.astro'
+import Live from '@components/Live.astro'
+import Contact from '@components/Contact.astro'
+import { fetchRepos } from '@modules/fetchRepos'
+
+const repos = await fetchRepos()
 ---
 
 <Layout title="Home">
-    <header class="flex flex-col items-center mt-8">
-        <nav class="max-w-2xl w-full justify-between flex">
-            <a class="text-zinc-300 hover:underline" href="mailto:notgdev@proton.me">notgdev@proton.me</a>
-            <a class="text-zinc-300 underline" href="https://github.com/notgabry">GitHub</a>
-        </nav>
-
-        <div class="aspect-square rounded-full overflow-hidden mt-16">
-            <img class="hover:animate-spin" width="128" height="128" src="/gabry.png" alt="My Avatar" />
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-bg/80 backdrop-blur-xl">
+        <div class="flex items-center justify-between max-w-6xl mx-auto px-6 py-3.5">
+            <span class="font-sans text-base font-bold tracking-tight text-text/90">notgabry</span>
+            <div class="flex items-center gap-8">
+                <a class="font-sans text-sm text-text-muted/60 hover:text-text transition-colors" href="#about">About</a>
+                <a class="font-sans text-sm text-text-muted/60 hover:text-text transition-colors" href="#work">Work</a>
+                <a class="font-sans text-sm text-text-muted/60 hover:text-text transition-colors" href="#live">Live</a>
+                <a class="font-sans text-sm font-semibold text-accent hover:text-accent-pink transition-colors" href="mailto:notg@ik.me">Contact</a>
+            </div>
         </div>
-    </header>
+    </nav>
 
-    <section class="flex mx-auto max-w-2xl flex-col mt-8">
-        <div class="flex font-bold text-3xl mx-auto mt-8">
-            <h1>
-                Hello, I'm gabry, a <span class="text-rose-300">passionate</span>
-                <span class="text-emerald-300">developer</span> with half a decade of <span class="text-violet-300">experience</span>
-            </h1>
+    <main class="pt-16">
+        <Hero />
+        <About />
+        <Work repos={repos} />
+        <Live />
+        <Contact />
+    </main>
+
+    <footer class="border-t border-white/5 py-5">
+        <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+            <span class="font-sans text-sm text-text-muted/30">notgabry &copy; 2025</span>
+            <a class="font-sans text-sm text-text-muted/50 hover:text-accent transition-colors" href="mailto:notg@ik.me">
+                notg@ik.me
+            </a>
         </div>
-
-        <div class="mt-8 text-base text-zinc-300 font-medium flex flex-col gap-y-4">
-            <p>I have experience with Go, TypeScript, and JavaScript, working on projects ranging from backend services to scalable web apps.</p>
-
-            <p>Recently, I’ve started learning Rust, which has deepened my interest in building innovative software.</p>
-
-            <p>I’m passionate about creating high-quality solutions using modern technologies and agile practices.</p>
-        </div>
-    </section>
-
-    <section class="mt-44 sm:mt-96 max-w-4xl mx-auto space-y-16" id="stats">
-        <div class="max-w-lg">
-            <h2 class="text-2xl font-bold">
-                <span class="text-w-accent-1">Recently</span> I've been picking up <span class="text-w-accent-2">chess</span> again, take a <span
-                    class="text-w-accent-3">look</span
-                > at my <span class="text-w-accent-4">poor stats</span>
-            </h2>
-            <Chess client:load />
-        </div>
-
-        <div class="max-w-lg ml-auto">
-            <h2 class="text-2xl font-bold">
-                I <span class="text-w-accent-5">can't</span> live <span class="text-w-accent-6">without music</span>, checkout the last <span
-                    class="text-w-accent-7">song</span
-                > I was listening to <span class="text-w-accent-8">on spotify</span>
-            </h2>
-            <Spotify client:load />
-        </div>
-    </section>
-
-    <section class="mt-44 max-w-4xl mx-auto mb-32">
-        <div class="max-w-2xl">
-            <h1 class="text-3xl font-bold">
-                If you have a <span class="text-w-accent-9">great idea</span> for a <span class="text-w-accent-10">project</span> feel free to <span
-                    class="text-w-accent-11">contact</span
-                > me
-            </h1>
-        </div>
-        <Links />
-    </section>
+    </footer>
 </Layout>

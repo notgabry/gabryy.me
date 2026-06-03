@@ -1,0 +1,20 @@
+---
+import { Icon } from 'astro-icon/components'
+import Links from '@components/Links.astro'
+---
+
+<section class="py-20" data-aos="fade-up">
+    <div class="max-w-3xl mx-auto px-6 text-center">
+        <div class="rounded-xl bg-linear-to-br from-accent/5 via-accent-pink/5 to-accent-cyan/5 border border-white/10 p-10 lg:p-14 hover:border-white/20 transition-all">
+            <Icon name="lucide:mail" class="w-6 h-6 text-accent/60 mx-auto mb-4" />
+            <span class="font-sans text-sm uppercase tracking-widest text-text-muted/50">Get in Touch</span>
+            <h2 class="font-sans text-4xl sm:text-5xl leading-tight tracking-tight text-text mt-5">
+                Got a great idea?
+            </h2>
+            <p class="font-serif text-xl italic text-text-muted/70 mt-3">Let's build it together.</p>
+            <div class="mt-8">
+                <Links />
+            </div>
+        </div>
+    </div>
+</section>

@@ -1,0 +1,39 @@
+---
+import { Icon } from 'astro-icon/components'
+import Spotify from '@components/Spotify.svelte'
+import Chess from '@components/Chess.svelte'
+---
+
+<section class="py-16" id="live" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+            <Icon name="lucide:music" class="w-4 h-4 text-accent/70" />
+            <span class="font-sans text-sm uppercase tracking-widest text-text-muted/60">Live</span>
+            <div class="flex-1 h-px bg-white/10"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-5 gap-6">
+            <div class="lg:col-span-3 rounded-xl bg-linear-to-br from-accent/5 via-accent-pink/3 to-transparent border border-white/10 p-6 hover:border-white/20 transition-all">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="font-sans text-sm text-text-muted/60 font-semibold">Music</span>
+                    <div class="flex-1 h-px bg-white/5"></div>
+                    <a class="font-sans text-xs text-text-muted/40 hover:text-accent transition-colors" href="https://www.last.fm/user/notgabry">
+                        Last.fm
+                    </a>
+                </div>
+                <Spotify client:load />
+            </div>
+
+            <div class="lg:col-span-2 rounded-xl bg-linear-to-br from-accent-cyan/5 via-accent/3 to-transparent border border-white/10 p-6 hover:border-white/20 transition-all">
+                <div class="flex items-center gap-3 mb-5">
+                    <span class="font-sans text-sm text-text-muted/60 font-semibold">Chess</span>
+                    <div class="flex-1 h-px bg-white/5"></div>
+                    <a class="font-sans text-xs text-text-muted/40 hover:text-accent transition-colors" href="https://chess.com/member/missing-her-eyes">
+                        Chess.com
+                    </a>
+                </div>
+                <Chess client:load />
+            </div>
+        </div>
+    </div>
+</section>

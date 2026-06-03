@@ -1,12 +1,12 @@
 # build output
 dist/
+.vercel/
 
 # generated types
 .astro/
 
 # dependencies
 node_modules/
-pnpm-lock.yaml
 
 # logs
 npm-debug.log*
@@ -16,10 +16,21 @@ pnpm-debug.log*
 
 # environment variables
 .env
-.env.production
+.env.*
+!.env.example
 
-# macOS-specific files
+# OS files
 .DS_Store
+Thumbs.db
 
-# jetbrains setting folder
+# editor
+.vscode/
 .idea/
+*.swp
+*.swo
+
+# bun
+bun.lockb
+
+# opencode
+AGENTS.md

@@ -1,0 +1,33 @@
+<section class="min-h-[70vh] flex items-center overflow-hidden" id="hero">
+    <div class="max-w-6xl mx-auto px-6 w-full py-16">
+        <div class="flex flex-col lg:flex-row items-start lg:items-center gap-10 lg:gap-16">
+            <div class="relative shrink-0 parallax-avatar">
+                <div class="absolute inset-0 rounded-xl bg-linear-to-br from-accent/20 via-accent-pink/20 to-accent-cyan/20 blur-2xl animate-pulse"></div>
+                <div class="relative w-28 h-28 sm:w-36 sm:h-36 rounded-xl overflow-hidden ring-1 ring-white/20">
+                    <img class="w-full h-full object-cover" src="/gabry.png" alt="My Avatar" />
+                </div>
+            </div>
+
+            <div class="flex-1 min-w-0">
+                <h1 class="font-sans text-5xl sm:text-7xl lg:text-8xl leading-none tracking-tight">
+                    <span class="text-text">Hello, I'm</span>
+                    <br />
+                    <span class="text-transparent bg-clip-text bg-linear-to-r from-accent via-accent-pink to-accent-cyan">
+                        gabry
+                    </span>
+                </h1>
+                <p class="font-serif text-xl sm:text-2xl italic text-text-muted/70 mt-5 max-w-xl leading-relaxed">
+                    Full-stack developer crafting backend services and scalable web apps
+                    with Go, TypeScript, and Rust.
+                </p>
+                <div class="flex flex-wrap gap-2 mt-6">
+                    {['Go', 'TypeScript', 'Rust', 'Svelte', 'Astro'].map((t) => (
+                        <span class="px-3 py-1.5 rounded-md bg-white/5 border border-white/10 font-sans text-xs text-text-muted/70 transition-all hover:bg-white/10 hover:scale-105">
+                            {t}
+                        </span>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>

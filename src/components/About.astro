@@ -1,0 +1,53 @@
+---
+import { Icon } from 'astro-icon/components'
+---
+
+<section class="py-16" id="about" data-aos="fade-up">
+    <div class="max-w-6xl mx-auto px-6">
+        <div class="flex items-center gap-3 mb-8">
+            <Icon name="lucide:info" class="w-4 h-4 text-accent/70" />
+            <span class="font-sans text-sm uppercase tracking-widest text-text-muted/60">About</span>
+            <div class="flex-1 h-px bg-white/10"></div>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-3 gap-4">
+            <div class="lg:col-span-2 rounded-xl bg-linear-to-br from-accent/8 via-accent/3 to-transparent border border-white/10 p-6 hover:border-accent/30 hover:-translate-y-0.5 transition-all">
+                <Icon name="lucide:monitor" class="w-5 h-5 text-accent/60 mb-3" />
+                <span class="font-sans text-xs uppercase tracking-widest text-accent/80 font-semibold">Experience</span>
+                <p class="font-serif text-lg leading-relaxed text-text/80 mt-3">
+                    Almost a decade on Linux and building production systems with Go, TypeScript,
+                    and JavaScript — from backend microservices to responsive frontends.
+                    I care about code that ships and stays running.
+                </p>
+            </div>
+
+            <div class="rounded-xl bg-linear-to-br from-accent-pink/8 via-accent-pink/3 to-transparent border border-white/10 p-6 hover:border-accent-pink/30 hover:-translate-y-0.5 transition-all">
+                <Icon name="lucide:activity" class="w-5 h-5 text-accent-pink/60 mb-3" />
+                <span class="font-sans text-xs uppercase tracking-widest text-accent-pink/80 font-semibold">Currently</span>
+                <p class="font-serif text-lg leading-relaxed text-text/80 mt-3">
+                    Diving deep into Rust and systems programming. Building smaller, faster tools.
+                </p>
+            </div>
+
+            <div class="rounded-xl bg-linear-to-br from-accent-cyan/8 via-accent-cyan/3 to-transparent border border-white/10 p-6 hover:border-accent-cyan/30 hover:-translate-y-0.5 transition-all">
+                <Icon name="lucide:pen" class="w-5 h-5 text-accent-cyan/60 mb-3" />
+                <span class="font-sans text-xs uppercase tracking-widest text-accent-cyan/80 font-semibold">Philosophy</span>
+                <p class="font-serif text-lg leading-relaxed text-text/80 mt-3">
+                    I adapt to every problem to find a solution.
+                </p>
+            </div>
+
+            <div class="lg:col-span-2 rounded-xl bg-linear-to-br from-accent-orange/8 via-accent-orange/3 to-transparent border border-white/10 p-6 hover:border-accent-orange/30 hover:-translate-y-0.5 transition-all">
+                <Icon name="lucide:code" class="w-5 h-5 text-accent-orange/60 mb-3" />
+                <span class="font-sans text-xs uppercase tracking-widest text-accent-orange/80 font-semibold">Stack</span>
+                <div class="flex flex-wrap gap-2 mt-3">
+                    {['Go', 'TypeScript', 'Rust', 'Svelte', 'Astro', 'Tailwind', 'Postgres', 'Docker'].map((t) => (
+                        <span class="px-3 py-1.5 rounded-md bg-white/5 border border-white/10 font-sans text-xs text-text-muted/70 transition-all hover:bg-white/10 hover:scale-105">
+                            {t}
+                        </span>
+                    ))}
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
