@@ -5,45 +5,34 @@ import type { MusicData } from '../../types'
 const LASTFM = 'https://ws.audioscrobbler.com/2.0/'
 const KEY = import.meta.env.Lastfm
 const USER = 'notgabry'
-const AUTH = 'Basic ' + Buffer.from(`${import.meta.env.SPOTIFY_CLIENT_ID}:${import.meta.env.SPOTIFY_CLIENT_SECRET}`).toString('base64')
 
 const lastfm = <T>(params: string) =>
     fetch(`${LASTFM}${params}&user=${USER}&api_key=${KEY}&format=json`)
         .then((r) => r.json() as T)
         .catch(() => null)
 
-const spotifyToken = () =>
-    fetch('https://accounts.spotify.com/api/token', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded', Authorization: AUTH },
-        body: 'grant_type=client_credentials'
-    })
+const deezerImg = (query: string): Promise<string> =>
+    fetch(`https://api.deezer.com/search/artist?q=${encodeURIComponent(query)}&limit=1`)
         .then((r) => r.json())
-        .then((d) => d.access_token as string)
+        .then((d) => d?.data?.[0]?.picture_medium ?? d?.data?.[0]?.picture_small ?? '')
         .catch(() => '')
 
-const spotifyImg = (token: string, query: string, type: string) =>
-    fetch(`https://api.spotify.com/v1/search?q=${encodeURIComponent(query)}&type=${type}&limit=1`, {
-        headers: { Authorization: `Bearer ${token}` }
-    })
+const deezerTrackImg = (track: string, artist: string): Promise<string> =>
+    fetch(`https://api.deezer.com/search?q=${encodeURIComponent(`${track} ${artist}`)}&limit=1`)
         .then((r) => r.json())
-        .then((d) => {
-            const items = d?.[`${type}s`]?.items
-            const source = type === 'track' ? items?.[0]?.album : items?.[0]
-            return source?.images?.[1]?.url ?? source?.images?.[0]?.url ?? ''
-        })
+        .then((d) => d?.data?.[0]?.album?.cover_medium ?? d?.data?.[0]?.album?.cover_small ?? '')
         .catch(() => '')
 
-async function enrichWithSpotify<T extends { image: string }>(
-    token: string,
+const isLastfmPlaceholder = (url: string) => !url || url.includes('2a96cbd8b46e442fc41c2b86b821562f')
+
+async function enrichWithDeezer<T extends { image: string; name: string }>(
     items: T[],
-    type: string,
     getQuery: (item: T) => string
 ) {
-    if (!token) return items
     return Promise.all(
         items.map(async (item) => {
-            const img = await spotifyImg(token, getQuery(item), type)
+            if (!isLastfmPlaceholder(item.image)) return item
+            const img = await deezerImg(getQuery(item))
             if (img) item.image = img
             return item
         })
@@ -59,19 +48,17 @@ export const GET: APIRoute = async () => {
         lastfm<any>(`?method=user.getrecenttracks&from=${monthStart}&limit=1`)
     ])
 
-    const token = await spotifyToken()
     const track = recentRes?.recenttracks?.track[0]
 
     let topArtists: MusicData['topArtists'] = (topArtistsRes?.topartists?.artist ?? []).map((a: any) => ({
         name: a.name, url: a.url, image: a.image?.[2]?.['#text'] ?? '', playcount: parseInt(a.playcount) || 0
     }))
 
-    topArtists = await enrichWithSpotify(token, topArtists, 'artist', (a) => a.name)
+    topArtists = await enrichWithDeezer(topArtists, (a) => a.name)
 
     let recentImage = track?.image[3]?.['#text'] ?? ''
-    if (token && track?.name && track?.artist?.['#text']) {
-        const img = await spotifyImg(token, `${track.name} ${track.artist['#text']}`, 'track')
-        if (img) recentImage = img
+    if (isLastfmPlaceholder(recentImage) && track?.name && track?.artist?.['#text']) {
+        recentImage = await deezerTrackImg(track.name, track.artist['#text']) || recentImage
     }
 
     const data: MusicData = {
