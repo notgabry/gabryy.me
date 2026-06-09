@@ -1,0 +1,40 @@
+---
+import Layout from '@layouts/Layout.astro'
+import Internet from '@components/Internet.svelte'
+---
+
+<Layout title="Internet">
+    <nav class="fixed top-0 left-0 right-0 z-50 border-b border-white/5 bg-bg/80 backdrop-blur-xl">
+        <div class="flex items-center justify-between max-w-6xl mx-auto px-4 sm:px-6 py-3 sm:py-3.5">
+            <a href="/" class="font-sans text-sm sm:text-base font-bold tracking-tight text-text/90 hover:text-accent transition-colors">notgabry</a>
+            <div class="flex items-center gap-4 sm:gap-8">
+                <a href="/" class="font-sans text-xs sm:text-sm text-text-muted/60 hover:text-text transition-colors">Home</a>
+                <a href="/#about" class="font-sans text-xs sm:text-sm text-text-muted/60 hover:text-text transition-colors">About</a>
+                <a href="/#work" class="font-sans text-xs sm:text-sm text-text-muted/60 hover:text-text transition-colors">Work</a>
+                <a href="/#live" class="font-sans text-xs sm:text-sm text-text-muted/60 hover:text-text transition-colors">Live</a>
+                <a href="/internet" class="font-sans text-xs sm:text-sm font-semibold text-accent transition-colors">Internet</a>
+            </div>
+        </div>
+    </nav>
+
+    <main class="pt-24 pb-20 px-4 sm:px-6">
+        <div class="max-w-4xl mx-auto">
+            <h1 class="font-serif text-3xl sm:text-4xl font-bold text-center mb-2" data-aos="fade-down">
+                Internet Usage
+            </h1>
+            <p class="font-serif text-sm italic text-text-muted/60 text-center mb-10 sm:mb-12" data-aos="fade-down" data-aos-delay="100">
+                Kena mobile data dashboard
+            </p>
+            <Internet client:load />
+        </div>
+    </main>
+
+    <footer class="border-t border-white/5 py-5">
+        <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
+            <span class="font-sans text-sm text-text-muted/30">notgabry &copy; 2025</span>
+            <a class="font-sans text-sm text-text-muted/50 hover:text-accent transition-colors" href="mailto:notg@ik.me">
+                notg@ik.me
+            </a>
+        </div>
+    </footer>
+</Layout>

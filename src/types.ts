@@ -1,3 +1,23 @@
+export interface InternetBundle {
+    name: string
+    isMainPlan: boolean
+    expires: string
+    totalGb: number
+    remainingGb: number
+    usedGb: number
+    percentUsed: number
+}
+
+export interface InternetData {
+    updatedAt: string
+    phone: string
+    bundles: InternetBundle[]
+    totalGb: number
+    remainingGb: number
+    usedGb: number
+    percentUsed: number
+}
+
 export interface MusicData {
     recent: { image: string; name: string; url: string; artist: string; nowplaying: boolean }
     topArtists: { name: string; url: string; image: string; playcount: number }[]
