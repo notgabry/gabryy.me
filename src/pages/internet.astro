@@ -1,6 +1,6 @@
 ---
 import Layout from '@layouts/Layout.astro'
-import Internet from '@components/Internet.svelte'
+import InternetP from '@components/Internet.svelte'
 ---
 
 <Layout title="Internet">
@@ -19,22 +19,18 @@ import Internet from '@components/Internet.svelte'
 
     <main class="pt-24 pb-20 px-4 sm:px-6">
         <div class="max-w-4xl mx-auto">
-            <h1 class="font-serif text-3xl sm:text-4xl font-bold text-center mb-2" data-aos="fade-down">
-                Internet Usage
-            </h1>
-            <p class="font-serif text-sm italic text-text-muted/60 text-center mb-10 sm:mb-12" data-aos="fade-down" data-aos-delay="100">
+            <h1 class="font-sans text-3xl sm:text-4xl font-bold text-center mb-2" data-aos="fade-down">Internet</h1>
+            <p class="font-sans text-sm text-text-muted/60 text-center mb-10 sm:mb-12" data-aos="fade-down" data-aos-delay="100">
                 Kena mobile data dashboard
             </p>
-            <Internet client:load />
+            <InternetP client:load />
         </div>
     </main>
 
     <footer class="border-t border-white/5 py-5">
         <div class="max-w-6xl mx-auto px-6 flex items-center justify-between">
             <span class="font-sans text-sm text-text-muted/30">notgabry &copy; 2025</span>
-            <a class="font-sans text-sm text-text-muted/50 hover:text-accent transition-colors" href="mailto:notg@ik.me">
-                notg@ik.me
-            </a>
+            <a class="font-sans text-sm text-text-muted/50 hover:text-accent transition-colors" href="mailto:notg@ik.me"> notg@ik.me </a>
         </div>
     </footer>
 </Layout>
